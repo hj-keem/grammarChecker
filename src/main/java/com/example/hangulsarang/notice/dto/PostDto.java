@@ -14,12 +14,12 @@ public class PostDto {
 
     public static PostDto fromEntity(PostEntity entity){
         PostDto dto = new PostDto();
-        dto.setId(dto.getId());
-        dto.setWriter(dto.getWriter());
-        dto.setPassword(dto.getPassword());
-        dto.setTitle(dto.getTitle());
-        dto.setContent(dto.getContent());
-        dto.setImgUrl(dto.getImgUrl());
+        dto.setId(entity.getId());
+        dto.setWriter(entity.getWriter());
+        dto.setPassword(entity.getPassword());
+        dto.setTitle(entity.getTitle());
+        dto.setContent(entity.getContent());
+        dto.setImgUrl(entity.getImgUrl());
         return dto;
     }
 }
