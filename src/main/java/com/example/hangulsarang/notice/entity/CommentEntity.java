@@ -10,6 +10,9 @@ public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long postId;
     private String comment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private PostEntity post;
 }

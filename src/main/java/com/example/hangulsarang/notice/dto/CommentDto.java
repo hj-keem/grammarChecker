@@ -12,7 +12,7 @@ public class CommentDto {
     public static CommentDto fromEntity(CommentEntity entity){
         CommentDto dto = new CommentDto();
         dto.setId(entity.getId());
-        dto.setPostId(entity.getPostId());
+        dto.setPostId(entity.getPost().getId());
         dto.setComment(entity.getComment());
         return dto;
     }
