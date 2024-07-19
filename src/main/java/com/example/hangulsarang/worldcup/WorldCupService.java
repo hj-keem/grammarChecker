@@ -1,5 +1,7 @@
 package com.example.hangulsarang.worldcup;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,52 +12,61 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class WorldCupService {
-    // 후보 준비
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    // 후보 정보
     public List<CandidateDto> candidates = new ArrayList<>(Arrays.asList(
-            new CandidateDto("후보1", "image1.jpg"),
-            new CandidateDto("후보2", "image2.jpg"),
-            new CandidateDto("후보3", "image3.jpg"),
-            new CandidateDto("후보4", "image4.jpg"),
-            new CandidateDto("후보5", "image5.jpg"),
-            new CandidateDto("후보6", "image6.jpg"),
-            new CandidateDto("후보7", "image7.jpg"),
-            new CandidateDto("후보8", "image8.jpg")
+            new CandidateDto("후보1", "http://localhost:8080/images/image1.png"),
+            new CandidateDto("후보2", "http://localhost:8080/images/image2.png"),
+            new CandidateDto("후보3", "http://localhost:8080/images/image3.png"),
+            new CandidateDto("후보4", "http://localhost:8080/images/image4.png"),
+            new CandidateDto("후보5", "http://localhost:8080/images/image5.png"),
+            new CandidateDto("후보6", "http://localhost:8080/images/image6.png"),
+            new CandidateDto("후보7", "http://localhost:8080/images/image7.png"),
+            new CandidateDto("후보8", "http://localhost:8080/images/image8.png")
     ));
 
-    public void worldCupLogic(CandidateDto candidateName) {
-        while (candidates.size() > 1) {
-            List<CandidateDto> nextRoundCandidates = new ArrayList<>();
-
-            // i와 i+1을 비교해야하기 때문에 i+=2 씩 증가
-            for (int i = 0; i < candidates.size(); i += 2) {
+    // 후보 정보를 나타내는 로직
+    public String getCandidate() throws JsonProcessingException {
+        List<CandidateDto>changedCandidates = new ArrayList<>();
+        if (candidates.size() > 1){
+            for (int i = 0; i < candidates.size(); i+=2) {
                 CandidateDto candidate1 = candidates.get(i);
                 CandidateDto candidate2 = candidates.get(i+1);
 
-                // 후보 정보를 클라이언트에 전송 (이름과 이미지 경로)
-                sendCandidatesToClient(candidate1, candidate2);
-
-                // 선택된 후보를 다음 라운드 후보 배열에 추가
-                nextRoundCandidates.add(getUserSelectedCandidate(candidateName));
-
-                // 선택된 후보들로 후보리스트 업
-                candidates = nextRoundCandidates;
+                // 한 라운드에서 사용될 후보 리스트
+                changedCandidates.add(candidate1);
+                changedCandidates.add(candidate2);
             }
+            return objectMapper.writeValueAsString(changedCandidates);
         }
-    }
-
-    // 클라이언트에서 선택된 후보 정보를 받아오는 메서드
-    public CandidateDto getUserSelectedCandidate(CandidateDto candidateInfo) {
-        System.out.println("사용자가 선택한 후보: " + candidateInfo);
-        return candidateInfo;
+        return null;
     }
 
 
-    // 클라이언트로 후보 정보를 전송하는 로직 구현
-    public Map<String, String> sendCandidatesToClient(CandidateDto candidate1, CandidateDto candidate2) {
-        // 예를 들어, 클라이언트에 JSON 형식으로 데이터를 전송하는 방법 등을 사용할 수 있음 (name , img)
-        HashMap<String, String> candidateList = new HashMap<>();
-        candidateList.put(candidate1.getName(), candidate1.getImg());
-        candidateList.put(candidate2.getName(), candidate2.getImg());
-        return candidateList;
+    // 사용자가 선택한 후보 정보를 받아와 반환하는 로직 (사용자가 선택할 때마다 해당 메서드 사용)
+    List<CandidateDto> nextRoundCandidates = new ArrayList<>();
+    public String getSelectedCandidate(CandidateDto selectedCandidateName) throws JsonProcessingException {
+        // 사용자가 선택한 후보 정보를 받아온 것이 selectedCandidateName
+        nextRoundCandidates.add(selectedCandidateName);
+        return objectMapper.writeValueAsString(nextRoundCandidates);
     }
+
+
+    // 다음 라운드로 넘어가는 로직
+    public void proceedToNextRound() {
+        // 후보 리스트 업
+        candidates = new ArrayList<>(nextRoundCandidates);
+        // 다음후보리스트 초기화
+        nextRoundCandidates.clear();
+    }
+
+
+    // 후보를 json 형태로 나타내는 메서드
+//    public String sendCandidatesToClient(CandidateDto candidate1, CandidateDto candidate2) throws JsonProcessingException {
+//        Map<String, String> candidateMap = new HashMap<>();
+//        candidateMap.put(candidate1.getName(), candidate1.getImg());
+//        candidateMap.put(candidate2.getName(), candidate2.getImg());
+//        return objectMapper.writeValueAsString(candidateMap);
+//    }
 }
