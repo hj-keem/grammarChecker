@@ -10,3 +10,5 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: create
+  resources:
+    static-locations: classpath:/static/
