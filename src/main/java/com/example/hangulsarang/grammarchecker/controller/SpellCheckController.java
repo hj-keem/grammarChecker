@@ -15,7 +15,7 @@ public class SpellCheckController {
     private final SpellCheckService service;
 
     @PostMapping("/check")
-    public String checkSpelling(@RequestBody SpellCheckDto dto) throws Exception {
+    public SpellCheckDto checkSpelling(@RequestBody SpellCheckDto dto) throws Exception {
         return service.spellingCheck(dto);
     }
 }
