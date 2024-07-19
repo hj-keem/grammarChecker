@@ -12,10 +12,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SpellCheckService {
-
-
     // 사전이 있는지 확인하는 메서드로, 사전 파일을 찾을 수 없다면 예외 발생
-    public String spellingCheck(SpellCheckDto dto) throws Exception {
+    public SpellCheckDto spellingCheck(SpellCheckDto dto) throws Exception {
         String dictionaryPath = "src/main/resources/ko_KR"; // 사전 파일 경로 설정
         List<String> errors = new ArrayList<>();
 
@@ -38,8 +36,8 @@ public class SpellCheckService {
                 if (!correct) {
                     // Hunspell 라이브러리에서 제시하는 권장 수정어리스트를 추가
                     List<String> suggestions = hunspell.suggest(word);
-                    dto.setResult(suggestions.get(0));
-                    System.out.println(word + ": 맞춤법 오류! 권장 수정어 : " + dto.getResult());
+                    dto.setResult("[ "+word+" ]" + " 는 틀린말이에요!!!!!!!!\n권장 수정어 : [ " + suggestions.get(0)+" ]");
+//                    System.out.println(word + ": 맞춤법 오류! 권장 수정어 : " + dto.getResult());
                 }
                 else {
                     dto.setResult("완벽한 문장이에요");
@@ -49,6 +47,6 @@ public class SpellCheckService {
         } catch (Exception e) {
             errors.add("사전 파일을 로드하는 중 오류가 발생했습니다: " + e.getMessage());
         }
-        return dto.getResult();
+        return dto;
     }
 }
