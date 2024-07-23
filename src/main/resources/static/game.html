@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임 진행</title>
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+<a href="/hangulsarang" class="home-link">홈으로 가기</a>
+<div id="game-page">
+    <header>
+        <h1>게임 진행</h1>
+    </header>
+    <main>
+        <div id="candidates-container">
+            <!-- 후보자1 이미지 표시 -->
+            <div class="candidate">
+                <img src="" alt="후보자 1" id="candidate-img-1">
+                <p id="candidate-name-1">후보자 1</p>
+            </div>
+            <!-- VS 표시 추가 -->
+            <div class="vs-container">
+                <img src="element/vs.png" alt="VS">
+            </div>
+            <!-- 후보자1 이미지 표시 -->
+            <div class="candidate">
+                <img src="" alt="후보자 2" id="candidate-img-2">
+                <p id="candidate-name-2">후보자 2</p>
+            </div>
+        </div>
+        <div id="winner-container" class="hidden">
+            <h2 id="winner-name">우승자</h2>
+            <img id="winner-img" src="" alt="우승자">
+        </div>
+    </main>
+</div>
+<script src="js/game.js"></script>
+</body>
+</html>
