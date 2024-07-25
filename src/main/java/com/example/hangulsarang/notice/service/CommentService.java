@@ -58,20 +58,21 @@ public class CommentService {
 
 
     // readAllComment
-    public Page<CommentDto> readAllComment(Long postId, Integer page, Integer limit){
-        // 게시글이 존재하는 지 확인
+    public Page<CommentDto> readAllComment(Long postId, Integer page, Integer limit) {
+        // 게시글이 존재하는지 확인
         Optional<PostEntity> optionalPost = postRepository.findById(postId);
-        if(optionalPost.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        if (optionalPost.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "게시글을 찾을 수 없습니다.");
+        }
 
-        // 페이지 조회
+        // Pageable 객체 생성
         Pageable pageable = PageRequest.of(page, limit);
-        Page<CommentEntity> commentEntityPage = commentRepository.findAll(pageable);
-        List<CommentDto> commentDtoList = new ArrayList<>();
-        for (CommentEntity commentEntity : commentEntityPage)
-            commentDtoList.add(CommentDto.fromEntity(commentEntity));
+        // 특정 게시글의 댓글 조회
+        Page<CommentEntity> commentEntityPage = commentRepository.findByPostId(postId, pageable);
+        // 엔티티를 DTO로 변환
         return commentEntityPage.map(CommentDto::fromEntity);
     }
+
 
     // updateComment
     public CommentDto updateComment(Long postId,Long commentId,CommentDto dto){
