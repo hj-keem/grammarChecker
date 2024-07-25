@@ -47,14 +47,13 @@ public class PostService {
     }
 
     // readPost (전체)
-    public Page<PostDto> readAllPost(Integer page, Integer limit){
-        Pageable pageable = PageRequest.of(0, 25);
+    public Page<PostDto> readAllPost(Integer page, Integer limit) {
+        Pageable pageable = PageRequest.of(page, limit); // 동적 페이지 번호와 크기
         Page<PostEntity> postEntityPage = repository.findAll(pageable);
-        List<PostDto> postDtoList = new ArrayList<>();
-        for (PostEntity postEntity : postEntityPage)
-            postDtoList.add(PostDto.fromEntity(postEntity));
+        // 엔티티를 DTO로 변환하여 바로 반환
         return postEntityPage.map(PostDto::fromEntity);
     }
+
 
 
     // update
