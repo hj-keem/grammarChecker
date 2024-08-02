@@ -32,9 +32,11 @@ dependencies {
 	// MySQL Connector
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	// jackson
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0' // 최신 버전으로 변경
-	implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0' // 최신 버전으로 변경
-	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0' // 최신 버전으로 변경
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.14.0'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.0'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3'
+
 
 }
 
