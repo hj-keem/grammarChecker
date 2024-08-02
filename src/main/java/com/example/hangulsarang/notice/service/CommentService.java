@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.swing.text.html.Option;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +38,7 @@ public class CommentService {
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setPost(postEntity);
         commentEntity.setComment(dto.getComment());
+        commentEntity.setTime(LocalDateTime.now());
 
         return CommentDto.fromEntity(commentRepository.save(commentEntity));
     }
