@@ -7,23 +7,27 @@
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-<a href="/hangulsarang" class="home-link">홈으로 가기</a>
 <div id="game-page">
     <header>
-        <h1>게임 진행</h1>
+        <!-- 카테고리 네비게이션 -->
+            <nav>
+                <ul class="categories">
+                    <li><a href="main.html" class="scroll-to" data-target="introduction">홈</a></li>
+                    <li><a href="spellcheck.html">맞춤법 검사기</a></li>
+                    <li><a href="game.html">맞춤법 월드컵</a></li>
+                    <li><a href="notice.html">게시판</a></li>
+                </ul>
+            </nav>
     </header>
     <main>
         <div id="candidates-container">
-            <!-- 후보자1 이미지 표시 -->
             <div class="candidate">
                 <img src="" alt="후보자 1" id="candidate-img-1">
                 <p id="candidate-name-1">후보자 1</p>
             </div>
-            <!-- VS 표시 추가 -->
             <div class="vs-container">
                 <img src="element/vs.png" alt="VS">
             </div>
-            <!-- 후보자1 이미지 표시 -->
             <div class="candidate">
                 <img src="" alt="후보자 2" id="candidate-img-2">
                 <p id="candidate-name-2">후보자 2</p>

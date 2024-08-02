@@ -1,4 +1,4 @@
-/* 기본 스타일 */
+/* game.css */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -7,97 +7,112 @@ body {
     background-color: #f4f4f4;
 }
 
-/* 전체 앱 컨테이너 */
 #game-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* 페이지 헤더 스타일 */
 header {
-    background: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+    width: 66.66%; /* 좌우 50px 여백을 고려한 폭 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 30px 0; /* 위아래 30px 패딩 */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* 세로로 배치 */
 }
 
-h1 {
+header nav {
+    display: flex;
+    justify-content: left; /* 가운데 정렬 */
+    width: 100%;
+}
+
+.categories {
+    list-style: none;
+    padding: 0;
     margin: 0;
+    display: flex;
+    gap: 20px;
 }
 
-/* 게임 컨테이너 스타일 */
+.categories li {
+    display: inline;
+}
+
+.categories a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.categories a:hover {
+    text-decoration: underline;
+}
+
+
 #candidates-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    margin-top: 70px; /* 헤더와의 간격을 20px 추가 */
     flex-wrap: wrap;
-    /* border: 2px dashed #007bff; */ /* 테두리 스타일 추가 */
-    position: relative; /* 절대 위치 요소 기준 */
+    position: relative;
 }
 
 #candidates-container .candidate {
     margin: 10px;
-    /* border: 2px solid #ccc; */ /* 개별 후보자 테두리 */
     text-align: center;
     font-size: 26px;
     padding: 10px;
-    width: 500px; /* 너비 증가 */
-    height: 300px; /* 높이 증가 */
+    width: 500px;
+    height: 300px;
 }
 
 #candidates-container img {
     max-width: 600px;
     max-height: 500px;
     object-fit: cover;
-     /* border: 1px solid #000; */ /* 이미지 테두리 추가 */
 }
 
-/* VS 이미지 컨테이너 */
 .vs-container {
     position: absolute;
     top: 47%;
     left: 50%;
-    transform: translate(-50%, -50%); /* 정확한 중앙 배치 */
-    z-index: 10; /* 후보자 이미지보다 위에 위치하도록 설정 */
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
-/* VS 이미지 스타일 */
 .vs-container img {
-    width: 200px; /* VS 이미지 크기 조정 */
+    width: 200px;
     height: auto;
 }
 
 #winner-container {
     margin-top: 40px;
-    text-align: center; /* 텍스트 중앙 정렬 */
-    display: none; /* 초기에는 숨기기 */
+    text-align: center;
+    display: none;
 }
 
 #winner-name {
     font-size: 30px;
     margin-bottom: 10px;
-    text-align: center; /* 텍스트 중앙 정렬 */
+    text-align: center;
 }
 
 #winner-name .highlight {
-    font-size : 40px;
-    color: red; /* 이름 부분의 색상을 빨간색으로 설정 */
+    font-size: 40px;
+    color: red;
 }
 
 #winner-img {
-    max-width: 400px; /* 더 큰 이미지 */
+    max-width: 400px;
     height: auto;
-    /*border: 5px solid gold;*/
     border-radius: 10px;
 }
 
-/* 우승자 컨테이너 숨기기 */
 .hidden {
     display: none;
 }
-
-
