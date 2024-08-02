@@ -3,6 +3,8 @@ package com.example.hangulsarang.notice.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 @Table(name = "comment")
@@ -11,6 +13,7 @@ public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comment;
+    private LocalDateTime time;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
