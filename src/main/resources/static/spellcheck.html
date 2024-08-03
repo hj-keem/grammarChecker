@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맞춤법 검사기</title>
+    <link rel="stylesheet" href="css/spellcheck.css">
+</head>
+<body>
+<div id="app">
+    <header>
+        <nav>
+            <ul class="categories">
+                <li><a href="main.html" class="scroll-to" data-target="introduction">홈</a></li>
+                <li><a href="spellcheck.html">맞춤법 검사기</a></li>
+                <li><a href="game.html">맞춤법 월드컵</a></li>
+                <li><a href="notice.html">게시판</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 id="grammar-title">맞춤법 검사기</h1>
+    <div id="check-section">
+        <textarea id="textInput" placeholder="여기에 텍스트를 입력하세요..."></textarea>
+        <div id="result" class="result"></div>
+    </div>
+    <button onclick="checkSpelling()">검사하기</button>
+</div>
+<script src="js/spellcheck.js"></script>
+</body>
+</html>
