@@ -36,8 +36,10 @@ public class SpellCheckService {
                 if (!correct) {
                     // Hunspell 라이브러리에서 제시하는 권장 수정어리스트를 추가
                     List<String> suggestions = hunspell.suggest(word);
-                    dto.setResult("[ "+word+" ]" + " 는 틀린말이에요!!!!!!!!\n권장 수정어 : [ " + suggestions.get(0)+" ]");
+                    dto.setResult("권장 수정어 : [ " + suggestions.get(0)+" ]");
 //                    System.out.println(word + ": 맞춤법 오류! 권장 수정어 : " + dto.getResult());
+                } else if (dto.getResult() == null){
+                    dto.setResult("공백입니다. 단어를 입력해주세요.");
                 }
                 else {
                     dto.setResult("완벽한 문장이에요");
