@@ -6,6 +6,15 @@ body {
     overflow-x: hidden; /* 수평 스크롤 막기 */
 }
 
+/* 폰트설정 */
+@font-face {
+  font-family: 'BMEuljiro10yearslater';
+  src: url('../fonts/BMEuljiro10yearslater.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 /* 메인 콘텐츠 영역 */
 .main-content {
     /*배경 설정*/
@@ -51,6 +60,7 @@ body {
     line-height: 1.4;
     opacity: 0;
     animation: fadeInText 3s ease-out forwards;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 /* 오른쪽 섹션 */
@@ -68,19 +78,20 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px; /* 항목 간의 간격 */
+    gap: 15px; /* 항목 간의 간격 */
 }
 
 .categories li {
-    margin: 0 10px; /* 좌우 간격 조정 */
+    margin: 0 0px; /* 좌우 간격 조정 */
 }
 
 .categories a {
     text-decoration: none;
     color: #333;
-    font-size: 22px;
+    font-size: 30px;
     padding: 20px 10px;
     transition: background 0.3s;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 /* 소개 섹션 */
