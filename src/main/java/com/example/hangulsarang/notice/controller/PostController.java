@@ -59,4 +59,12 @@ public class PostController {
     public void deletePost(@PathVariable("postId") Long id){
         service.deletePost(id);
     }
+
+    // search
+    @GetMapping("/post/search")
+    public Page<PostDto> searchPost(@RequestParam("keyword") String keyword,
+                                    @RequestParam("page") Integer page,
+                                    @RequestParam("limit") Integer limit){
+        return service.searchPost(keyword,page,limit );
+    }
 }
