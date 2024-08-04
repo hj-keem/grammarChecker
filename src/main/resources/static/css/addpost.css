@@ -1,0 +1,125 @@
+/* addpost.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* 폰트설정 */
+@font-face {
+  font-family: 'BMEuljiro10yearslater';
+  src: url('../fonts/BMEuljiro10yearslater.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#create-post-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    width: 66.66%; /* 좌우 50px 여백을 고려한 폭 설정 */
+
+    padding: 30px 0; /* 위아래 30px 패딩 */
+    display: flex;
+    flex-direction: column; /* 세로로 배치 */
+}
+
+header nav {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+}
+
+.categories {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.categories li {
+    display: inline;
+}
+
+.categories a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 10px;
+    font-weight: normal;
+    font-size: 20px;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
+}
+
+.categories a:hover {
+    text-decoration: underline;
+}
+
+#create-post-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-top: 20px; /* 헤더와의 간격을 20px 추가 */
+}
+
+#create-post-title h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+#create-post-title button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+/* 커서를 갖다댔을 때 변하는 색상 */
+#create-post-title button:hover {
+    background-color: #0056b3;
+}
+
+/* 헤더와 본문 사이 간격 추가 */
+main {
+    margin-top: 10px; /* 30px의 상단 마진을 추가하여 헤더와의 간격을 띄움 */
+}
+
+#post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#post-form input, #post-form textarea {
+    width: calc(100% - 0px); /* 양쪽 패딩을 뺀 너비 */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* padding과 border를 포함하여 크기 계산 */
+}
+
+#post-content {
+    height: 300px; /* 텍스트 영역의 초기 높이 설정 */
+    resize: vertical; /* 사용자가 세로로 크기를 조절할 수 있도록 설정 */
+}
+
+#post-form button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+#post-form button:hover {
+    background-color: #0056b3;
+}
