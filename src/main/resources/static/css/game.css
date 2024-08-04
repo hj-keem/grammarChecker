@@ -7,6 +7,14 @@ body {
     background-color: #f4f4f4;
 }
 
+/* 폰트설정 */
+@font-face {
+  font-family: 'BMEuljiro10yearslater';
+  src: url('../fonts/BMEuljiro10yearslater.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #game-page {
     display: flex;
     flex-direction: column;
@@ -45,6 +53,7 @@ header nav {
     padding: 10px;
     font-weight: normal;
     font-size: 20px;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 .categories a:hover {
@@ -69,6 +78,8 @@ header nav {
     padding: 10px;
     width: 500px;
     height: 300px;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
+
 }
 
 #candidates-container img {
@@ -100,11 +111,13 @@ header nav {
     font-size: 30px;
     margin-bottom: 10px;
     text-align: center;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 #winner-name .highlight {
     font-size: 40px;
     color: red;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 #winner-img {
