@@ -5,6 +5,14 @@ body, html {
     height: 100%;
 }
 
+/* 폰트설정 */
+@font-face {
+  font-family: 'BMEuljiro10yearslater';
+  src: url('../fonts/BMEuljiro10yearslater.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 #app {
     width: 100%;
 }
@@ -41,6 +49,7 @@ header nav {
     padding: 10px;
     font-weight: normal;
     font-size: 20px;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
 }
 
 .categories a:hover {
@@ -50,7 +59,9 @@ header nav {
 #grammar-title {
     text-align: center; /* 제목을 중앙에 배치 */
     margin-top: 80px;
-    font-size: 24px;
+    font-size: 30px;
+    font-family: 'BMEuljiro10yearslater', sans-serif; /*글꼴설정*/
+
 }
 
 #check-section {
