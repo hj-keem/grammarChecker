@@ -1,6 +1,7 @@
 package com.example.hangulsarang.notice.service;
 
 import com.example.hangulsarang.notice.dto.PostDto;
+import com.example.hangulsarang.notice.dto.SearchDto;
 import com.example.hangulsarang.notice.entity.PostEntity;
 import com.example.hangulsarang.notice.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -108,5 +109,12 @@ public class PostService {
         if(optionalPost.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         repository.deleteById(id);
+    }
+
+    // SearchPost
+    public Page<PostDto> searchPost(String keyword, Integer page, Integer limit){
+        Pageable pageable = PageRequest.of(page, limit); // 동적 페이지 번호와 크기
+        Page<PostEntity> searchPage = repository.findByTitleContaining(keyword, pageable);
+        return searchPage.map(PostDto::fromEntity);
     }
 }
