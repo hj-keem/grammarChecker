@@ -7,7 +7,7 @@ import lombok.Data;
 public class PostDto {
     private Long id;
     private String writer;
-    private String password;
+//    private String password;
     private String title;
     private String content;
     private String imgUrl;
@@ -16,7 +16,7 @@ public class PostDto {
         PostDto dto = new PostDto();
         dto.setId(entity.getId());
         dto.setWriter(entity.getWriter());
-        dto.setPassword(entity.getPassword());
+//        dto.setPassword(entity.getPassword());
         dto.setTitle(entity.getTitle());
         dto.setContent(entity.getContent());
         dto.setImgUrl(entity.getImgUrl());
