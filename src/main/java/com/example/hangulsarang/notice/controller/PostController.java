@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,9 +18,10 @@ public class PostController {
 
     // createPost
     // 게시글 생성 api
-    @PostMapping("/post")
-    public PostDto createPost(@RequestBody PostDto dto){
-        return service.createPost(dto);
+    @PostMapping(value = "/post", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public PostDto createPost(@RequestPart("dto") PostDto dto,
+                              @RequestPart(value = "image", required = false) MultipartFile postImage) throws IOException {
+        return service.createPost(dto, postImage);
     }
 
     // readPost (개별)
