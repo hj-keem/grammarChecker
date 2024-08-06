@@ -1,7 +1,6 @@
 package com.example.hangulsarang.notice.service;
 
 import com.example.hangulsarang.notice.dto.PostDto;
-import com.example.hangulsarang.notice.dto.SearchDto;
 import com.example.hangulsarang.notice.entity.PostEntity;
 import com.example.hangulsarang.notice.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -29,13 +27,38 @@ public class PostService {
     private final PostRepository repository;
 
     // create
-    public PostDto createPost(PostDto dto){
+    public PostDto createPost(PostDto dto, MultipartFile postImage) throws IOException {
         PostEntity postEntity = new PostEntity();
         postEntity.setTitle(dto.getTitle());
         postEntity.setContent(dto.getContent());
-        postEntity.setImgUrl(dto.getImgUrl());
         postEntity.setWriter(dto.getWriter());
-        postEntity.setPassword(dto.getPassword());
+//        postEntity.setPassword(dto.getPassword());
+
+        if (postImage == null || postImage.isEmpty()){
+            dto.setImgUrl(null);
+        } else {
+            String profileDir = "media/img/";
+            try {
+                Files.createDirectories(Path.of(profileDir));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // 이미지를 업로드하고 고유한 파일 이름 생성
+            // 이미지 이름 만들기
+            String[] fileNameSplit = postImage.getOriginalFilename().split("\\.");
+            String extension = fileNameSplit[fileNameSplit.length - 1]; // 확장자 추출
+            String fileName = System.currentTimeMillis() + "." + extension;
+            postImage.transferTo(Path.of(profileDir+fileName));
+
+            // 이미지 URL 생성
+            String crerateImageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("static/img/") // 이미지 업로드 경로
+                    .path(fileName)
+                    .toUriString();
+
+            postEntity.setImgUrl(crerateImageUrl); // url 경로 생성
+        }
         return PostDto.fromEntity(repository.save(postEntity));
     }
 
@@ -71,7 +94,7 @@ public class PostService {
 
     // 이미지 등록
     public PostDto updateImage(Long id, MultipartFile postImage){
-        String profileDir = "media/images/";
+        String profileDir = "media/img/";
         try {
             Files.createDirectories(Path.of(profileDir));
         } catch (IOException e) {
