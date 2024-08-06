@@ -24,10 +24,11 @@
     <button id="back-to-list">목록으로</button>
   </div>
   <main>
-    <form id="post-form">
+    <form id="post-form" enctype="multipart/form-data">
       <input type="text" id="post-title" placeholder="제목" required>
       <input type="text" id="post-writer" placeholder="작성자" required>
       <textarea id="post-content" placeholder="내용" required></textarea>
+      <input type="file" id="post-image" name="post-image" accept="image/*">
       <button type="submit">작성하기</button>
     </form>
   </main>
