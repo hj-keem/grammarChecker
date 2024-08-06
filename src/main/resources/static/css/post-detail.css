@@ -96,6 +96,13 @@ header nav {
     text-align: left;
 }
 
+.content-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px 0;
+    }
+
 #post-content {
     font-size: 16px;
     text-align: left;
