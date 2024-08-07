@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const postRow = document.createElement('tr');
                     postRow.innerHTML = `
                         <td>${index + 1}</td>
-                        <td><a href="post-detail.html?id=${post.id}">${post.title}</a></td>
+                        <td><a href="/post-detail?id=${post.id}">${post.title}</a></td>
                         <td>${post.writer}</td>
                     `;
                     postTableBody.appendChild(postRow);
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const postRow = document.createElement('tr');
                     postRow.innerHTML = `
                         <td>${index + 1}</td>
-                        <td><a href="post-detail.html?id=${post.id}">${post.title}</a></td>
+                        <td><a href="/post-detail?id=${post.id}">${post.title}</a></td>
                         <td>${post.writer}</td>
                     `;
                     postTableBody.appendChild(postRow);
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 페이지 전환 함수
     function goToCreatePostPage() {
-        window.location.href = 'addpost.html'; // addpost.html 페이지로 리디렉션
+        window.location.href = '/addpost'; // addpost.html 페이지로 리디렉션
     }
 
     // 이벤트 리스너
