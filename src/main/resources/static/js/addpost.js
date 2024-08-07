@@ -33,7 +33,7 @@ document.getElementById('post-form').addEventListener('submit', async (e) => {
         const result = await response.json();
         alert('게시물이 작성되었습니다.');
         console.log(result);
-        window.location.href = 'notice.html';
+        window.location.href = '/notice';
 
     } catch (error) {
         console.error('Error:', error);
