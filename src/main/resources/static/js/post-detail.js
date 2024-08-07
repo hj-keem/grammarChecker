@@ -113,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 뒤로 가기 버튼 클릭 이벤트
   backToListButton.addEventListener('click', () => {
-    window.location.href = 'notice.html';
+    window.location.href = '/notice';
   });
 
   // 수정 버튼 클릭 이벤트
   editPostButton.addEventListener('click', () => {
-    window.location.href = `edit-post.html?id=${postId}`;  // 수정 페이지로 이동
+    window.location.href = `/edit-post?id=${postId}`;  // 수정 페이지로 이동
   });
 
   // 삭제 버튼 클릭 이벤트
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 게시글 삭제 후 목록으로 이동
-      window.location.href = 'notice.html';
+      window.location.href = '/notice';
     } catch (error) {
       console.error('Error deleting post:', error);
     }
