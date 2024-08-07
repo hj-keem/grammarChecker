@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('candidate-name-2').textContent = candidate2.name;
 
             // 클릭 이벤트 핸들러 설정
-            document.querySelector('.candidate:nth-child(1)').onclick = function() { selectCandidate(currentIndex); };
-            document.querySelector('.candidate:nth-child(2)').onclick = function() { selectCandidate(currentIndex + 1); };
+            document.getElementById('candidate-img-1').parentElement.onclick = function() { selectCandidate(currentIndex); };
+            document.getElementById('candidate-img-2').parentElement.onclick = function() { selectCandidate(currentIndex + 1); };
         } else {
             // 다음 라운드로 진행
             proceedToNextRound();
