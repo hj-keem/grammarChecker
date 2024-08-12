@@ -1,17 +1,15 @@
 package com.example.hangulsarang;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @Slf4j
-public class UserController {
+public class OauthController {
     @GetMapping("/api/user")
     public Map<String, Object> getUserInfo(HttpSession session) {
         Map<String, Object> response = new HashMap<>();
