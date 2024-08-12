@@ -9,7 +9,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-// 최신 Spring Security에서 OAuth 2.0 로그인을 구성
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { //HTTP 요청에 대한 보안 설정을 적용
