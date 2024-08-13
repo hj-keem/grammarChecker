@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loginButton = document.getElementById('loginButton');
+    event.preventDefault(); // 기본 동작 방지
 
     // 현재 페이지 URL 저장
     const currentUrl = window.location.href;
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleMypageClick() {
         window.location.href = '/mypage';
     }
+    });
 
 
     // 맞춤법 검사 함수
@@ -82,4 +84,3 @@ document.addEventListener('DOMContentLoaded', function() {
             resultDiv.textContent = `오류 발생: ${error.message}`;
         }
     }
-});
