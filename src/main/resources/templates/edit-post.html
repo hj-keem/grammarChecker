@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물 작성</title>
+    <link rel="stylesheet" href="/css/addpost.css">
+</head>
+<body>
+<div id="create-post-page">
+    <header>
+        <nav>
+            <ul class="categories">
+                <li><a href="/hangulsarang" class="scroll-to" data-target="introduction">홈</a></li>
+                <li><a href="/spellcheck">맞춤법 검사기</a></li>
+                <li><a href="/game">맞춤법 월드컵</a></li>
+                <li><a href="/notice">게시판</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="create-post-title">
+        <h1>🔄 게시물 수정 🔄️</h1>
+        <button id="back-to-list">목록으로</button>
+    </div>
+    <main>
+        <form id="post-form" enctype="multipart/form-data">
+            <input type="text" id="post-title" placeholder="제목" required>
+            <input type="text" id="post-writer" placeholder="작성자" required>
+            <textarea id="post-content" placeholder="내용" required></textarea>
+            <input type="file" id="post-image" name="post-image" accept="image/*">
+            <button type="submit" id="save-post">수정하기</button>
+        </form>
+    </main>
+</div>
+<script src="/js/edit-post.js"></script>
+</body>
+</html>
