@@ -10,6 +10,65 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // 페이지가 제대로 로드되지 않으면 이후 코드를 실행하지 않음
         }
 
+    const loginButton = document.getElementById('loginButton');
+    event.preventDefault(); // 기본 동작 방지
+
+    // 현재 페이지 URL 저장
+    const currentUrl = window.location.href;
+    loginButton.setAttribute('data-redirect', currentUrl);
+    console.log('Current URL saved for redirect:', currentUrl);
+
+    // 로그인 상태 확인 함수
+    function checkLoginStatus() {
+        fetch('/api/user')
+            .then(response => response.json())
+            .then(data => {
+                loginButton.removeEventListener('click', handleLoginClick); // 중복된 이벤트 방지록 기존 리스너 제거
+                loginButton.removeEventListener('click', handleMypageClick); //
+                console.log('login status : ',data.isLoggedIn);
+
+                if (data.isLoggedIn) {
+                    loginButton.textContent = '마이페이지';
+                    loginButton.addEventListener('click', handleMypageClick);
+                } else {
+                    loginButton.textContent = '로그인';
+                    loginButton.addEventListener('click', handleLoginClick);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching user info:', error);
+            });
+    }
+
+    checkLoginStatus();  // DOMContentLoaded 시 로그인 상태 확인
+
+    function handleLoginClick() {
+        const redirectUrl = loginButton.getAttribute('data-redirect');
+        console.log('Redirect URL:', redirectUrl);
+
+        fetch('/api/set-redirect-uri', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ redirectUri: redirectUrl }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('네트워크 응답에 문제가 있습니다.');
+            }
+            window.location.href = '/oauth2/authorization/kakao';
+        })
+        .catch(error => {
+            console.error('Error sending redirect URI to server:', error);
+        });
+    }
+
+    function handleMypageClick() {
+        window.location.href = '/mypage';
+    }
+
+
     // 게시글 목록 가져오기
     async function fetchPosts() {
         try {
@@ -72,10 +131,21 @@ document.addEventListener('DOMContentLoaded', () => {
         searchedPosts(searchKeyword); // 검색어를 사용하여 게시글 가져오기
     }
 
+    // 로그인 상태 확인 함수
+    async function goToCreatePostPage() {
+        try {
+            const response = await fetch('/api/user'); // 사용자 로그인 상태를 확인하는 API 호출
+            const data = await response.json();
 
-    // 페이지 전환 함수
-    function goToCreatePostPage() {
-        window.location.href = '/addpost'; // addpost.html 페이지로 리디렉션
+            if (data.isLoggedIn) {
+                // 로그인된 상태라면 addpost 페이지로 이동
+                window.location.href = '/addpost';
+            } else {
+                handleLoginClick();
+                }
+        } catch (error) {
+            console.error('Error checking login status:', error);
+        }
     }
 
     // 이벤트 리스너
@@ -84,4 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 전체 게시글 로드
     fetchPosts();
+
+
 });
