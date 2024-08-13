@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/css/mypage.css">
 </head>
 <body>
-<h1> 마이페이지 입니다. </h1>
+<div class="profile-container">
+    <h1>My Profile</h1>
+    <div class="profile-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" disabled>
+
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" disabled>
+
+        <label for="profileImg">Profile Image:</label>
+        <img id="profileImage" src="" alt="Profile Image">
+
+        <button id="editButton">Edit Profile</button>
+    </div>
+</div>
+<script src="/js/mypage.js"></script>
 </body>
 </html>
