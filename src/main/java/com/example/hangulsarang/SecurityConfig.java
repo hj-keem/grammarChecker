@@ -16,6 +16,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+                                // 댓글과 게시글 생성부분만 인증필요
+                                .requestMatchers( "/addpost").authenticated()
                                 .anyRequest().permitAll() // 모든 요청을 허용
                 )
                 // OAuth 2.0을 사용하여 로그인을 처리하는 설정
