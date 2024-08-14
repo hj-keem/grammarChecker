@@ -14,6 +14,10 @@ public class OauthController {
     public Map<String, Object> getUserInfo(HttpSession session) {
         Map<String, Object> response = new HashMap<>();
         response.put("isLoggedIn", session.getAttribute("user") != null);
+        response.put("userId", session.getAttribute("id"));
+
+        log.info("/api/user에서 가져온 userId : {}", session.getAttribute("id"));
+        log.info("현재 세션 ID : {}", session.getId()); // 세션 ID 로그
         return response;
     }
 
@@ -23,9 +27,6 @@ public class OauthController {
         String redirectUri = request.getRedirectUri();
         // 받은 redirect_uri를 세션에 저장
         session.setAttribute("redirectUri", redirectUri);
-        // 디버깅용 로그
-        log.info("postmapping으로 전달받은 URI: " + redirectUri);
-        log.info("세션에 저장된 url: " + (String) session.getAttribute("redirectUri"));
     }
 
 }
