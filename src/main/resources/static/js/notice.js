@@ -4,14 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const noPostsMessage = document.getElementById('no-posts-message');
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
+    const postWriterElement = document.getElementById('post-writer'); // 닉네임을 표시할 요소
+    const userNickname = localStorage.getItem('userNickname');
+
 
     if (!writePostButton || !postTableBody || !noPostsMessage || !searchInput || !searchButton) {
             console.error('One or more required elements are missing in the HTML.');
             return; // 페이지가 제대로 로드되지 않으면 이후 코드를 실행하지 않음
         }
 
+    if (userNickname) {
+        if (postWriterElement) {
+            postWriterElement.textContent = userNickname;
+        }
+    } else {
+        console.log('User nickname not found in localStorage.');
+    }
+
     const loginButton = document.getElementById('loginButton');
-    event.preventDefault(); // 기본 동작 방지
 
     // 현재 페이지 URL 저장
     const currentUrl = window.location.href;
