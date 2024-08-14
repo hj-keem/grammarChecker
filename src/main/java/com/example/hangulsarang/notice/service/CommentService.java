@@ -38,6 +38,7 @@ public class CommentService {
         CommentEntity commentEntity = new CommentEntity();
         commentEntity.setPost(postEntity);
         commentEntity.setComment(dto.getComment());
+        commentEntity.setWriter(dto.getWriter());
         commentEntity.setTime(LocalDateTime.now());
 
         return CommentDto.fromEntity(commentRepository.save(commentEntity));
