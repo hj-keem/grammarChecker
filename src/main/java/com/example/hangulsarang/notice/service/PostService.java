@@ -81,13 +81,39 @@ public class PostService {
 
 
     // update
-    public PostDto updatePost(Long id, PostDto dto){
+    public PostDto updatePost(Long id, PostDto dto, MultipartFile updateImage) throws IOException {
         Optional<PostEntity> optionalPost = repository.findById(id);
         if (optionalPost.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         PostEntity postEntity = optionalPost.get();
         postEntity.setTitle(dto.getTitle());
         postEntity.setContent(dto.getContent());
+        // 이미지
+        if (updateImage == null || updateImage.isEmpty()){
+            dto.setImgUrl(null);
+        } else {
+            String profileDir = "media/img/";
+            try {
+                Files.createDirectories(Path.of(profileDir));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            // 이미지를 업로드하고 고유한 파일 이름 생성
+            // 이미지 이름 만들기
+            String[] fileNameSplit = updateImage.getOriginalFilename().split("\\.");
+            String extension = fileNameSplit[fileNameSplit.length - 1]; // 확장자 추출
+            String fileName = System.currentTimeMillis() + "." + extension;
+            updateImage.transferTo(Path.of(profileDir + fileName));
+
+            // 이미지 URL 생성
+            String crerateImageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("static/img/") // 이미지 업로드 경로
+                    .path(fileName)
+                    .toUriString();
+
+            postEntity.setImgUrl(crerateImageUrl); // url 경로 생성
+        }
         return PostDto.fromEntity(repository.save(postEntity));
     }
 
