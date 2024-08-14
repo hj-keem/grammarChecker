@@ -5,9 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const commentContent = document.getElementById('comment-content');
   const commentsList = document.getElementById('comments');
   const postTitle = document.getElementById('post-title');
+  const postWriter = document.getElementById('post-writer');
   const editPostButton = document.getElementById('edit-post');
   const deletePostButton = document.getElementById('delete-post');
   const commentButton = document.getElementById('comment-button'); //댓글작성버튼
+//  const userNickname = localStorage.getItem('userNickname');
+//  const postWriterElement = document.getElementById('post-writer'); // 닉네임을 표시할 요소
+//
+//    if (userNickname) {
+//        if (postWriterElement) {
+//            postWriterElement.textContent = userNickname;
+//        }
+//    } else {
+//        console.log('User nickname not found in localStorage.');
+//    }
 
   // URL 쿼리 파라미터에서 게시글 ID 가져오기
   const queryParams = new URLSearchParams(window.location.search);
@@ -30,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 게시글 제목 설정
       postTitle.textContent = post.title;
+      postWriter.textContent = `작성자: ${post.writer}`; // 작성자 정보 표시
 
       // 게시글 상세 내용 및 이미지 표시
       postDetailDiv.innerHTML = `
@@ -72,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const commentItem = document.createElement('li');
           commentItem.innerHTML = `
+            <div class="comment-writer">${comment.writer || '알 수 없음'}</div> <!-- 작성자 이름 표시 -->
             <div class="comment-text">${comment.comment || 'No content'}</div>
             <div class="comment-date">${formattedDate}</div>
           `;
@@ -187,6 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const user = await response.json(); // 새로 생성된 사용자 정보 가져오기
                 userId = user.id; // userId 저장
                 console.log("유저프로필 생성 완료! userId: ", userId);
+                // 유저닉네임 받아오기
+                localStorage.setItem('userNickname', user.nickname);
+                console.log("세션에 저장된 유저닉네임 : ", user.nickname);
             } else {
                 console.error('Failed to create user profile');
             }
@@ -232,13 +248,17 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const content = commentContent.value;
 
+    // 로컬스토리지에서 닉네임 가져오기
+    const userNickname = localStorage.getItem('userNickname');
+    console.log("댓글작성 시 받아온 usernickname : ", userNickname);
+
     try {
       const response = await fetch(`/post/${postId}/comment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ comment: content }),
+        body: JSON.stringify({ comment: content, writer: userNickname }),
       });
 
       if (!response.ok) {
@@ -286,5 +306,6 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchPostDetail();
   fetchComments();
   toggleCommentButton();  // 댓글 작성 버튼 활성화/비활성화 토글
+
 });
 
