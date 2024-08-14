@@ -71,6 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const user = await response.json(); // 새로 생성된 사용자 정보 가져오기
                 userId = user.id; // userId 저장
                 console.log("유저프로필 생성 완료! userId: ", userId);
+                // 세션 스토리지에 닉네임 저장
+                localStorage.setItem('userNickname', user.nickname);
+                console.log("세션에 저장된 유저닉네임 : ", user.nickname);
             } else {
                 console.error('Failed to create user profile');
             }
