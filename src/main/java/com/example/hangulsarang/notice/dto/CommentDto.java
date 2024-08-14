@@ -11,6 +11,7 @@ public class CommentDto {
     private Long id;
     private Long postId;
     private String comment;
+    private String writer;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime time;
@@ -21,6 +22,7 @@ public class CommentDto {
         dto.setPostId(entity.getPost().getId());
         dto.setComment(entity.getComment());
         dto.setTime(entity.getTime());
+        dto.setWriter(entity.getWriter());
         return dto;
     }
 }
