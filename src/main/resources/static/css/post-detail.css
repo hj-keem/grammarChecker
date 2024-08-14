@@ -64,10 +64,27 @@ header nav {
     border-bottom: 1px solid #ccc; /* 두께 2px, 색상 #ccc의 아래쪽 선 추가 */
 }
 
+#post-bottom {
+    display: flex;
+    justify-content: space-between; /* 버튼과 작성자 정보 양쪽 끝으로 배치 */
+    align-items: center; /* 세로 정렬 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+}
+
+#post-editOrdelete {
+    display: flex; /* 수정 및 삭제 버튼을 수평으로 배치 */
+    gap: 10px; /* 버튼 사이에 간격 추가 (선택적) */
+}
+
 
 #post-detail-title h1 {
   margin: 0;
   font-size: 28px;
+}
+
+#post-writer {
+    font-size: 14px; /* 글씨 크기를 줄입니다 */
+    color: #888; /* 옅은 색으로 표시합니다 */
 }
 
 #post-detail-title button {
@@ -205,4 +222,11 @@ header nav {
 #comment-submit-button:disabled {
     background-color: #ccc; /* 비활성화 상태에서 회색 */
     cursor: not-allowed;
+}
+
+/* 댓글 작성자 이름 스타일 */
+.comment-writer {
+    font-weight: bold; /* 굵은 글씨로 표시합니다 */
+    color: #333; /* 색상을 설정합니다 */
+    margin-bottom: 5px; /* 댓글 내용과의 간격을 설정합니다 */
 }
