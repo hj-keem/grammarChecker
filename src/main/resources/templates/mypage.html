@@ -7,19 +7,32 @@
     <link rel="stylesheet" href="/css/mypage.css">
 </head>
 <body>
-<div class="profile-container">
-    <h1>My Profile</h1>
-    <div class="profile-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" disabled>
+<div id="app">
+    <header>
+        <nav>
+            <ul class="categories">
+                <li><a href="/hangulsarang" class="scroll-to" data-target="introduction">홈</a></li>
+                <li><a href="/spellcheck">맞춤법 검사기</a></li>
+                <li><a href="/game">맞춤법 월드컵</a></li>
+                <li><a href="/notice">게시판</a></li>
+            </ul>
+            <a href="#" id="loginButton">로그인</a>
+        </nav>
+    </header>
+    <div class="profile-container">
+        <h1>My Profile</h1>
+        <div class="profile-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" disabled>
 
-        <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" disabled>
+            <label for="nickname">Nickname:</label>
+            <input type="text" id="nickname" disabled>
 
-        <label for="profileImg">Profile Image:</label>
-        <img id="profileImage" src="" alt="Profile Image">
+            <label for="profileImg">Profile Image:</label>
+            <img id="profileImage" src="" alt="Profile Image">
 
-        <button id="editButton">Edit Profile</button>
+            <button id="editButton">편집하기</button>
+        </div>
     </div>
 </div>
 <script src="/js/mypage.js"></script>
