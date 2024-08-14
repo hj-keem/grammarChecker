@@ -13,6 +13,7 @@ public class CommentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String comment;
+    private String writer;
     private LocalDateTime time;
 
     @ManyToOne(fetch = FetchType.LAZY)
