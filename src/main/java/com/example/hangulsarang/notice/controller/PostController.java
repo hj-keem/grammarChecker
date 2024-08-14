@@ -40,11 +40,12 @@ public class PostController {
     }
 
     // updatePost
-    @PutMapping("/post/{postId}")
+    @PutMapping(value = "/post/{postId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public PostDto updatePost(@PathVariable("postId") Long id,
-                              @RequestBody PostDto dto
-    ){
-        return service.updatePost(id, dto);
+                              @RequestPart("dto") PostDto dto,
+                              @RequestPart(value = "image", required = false) MultipartFile updateImage
+    ) throws IOException {
+        return service.updatePost(id, dto, updateImage);
     }
 
 
