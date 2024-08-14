@@ -61,7 +61,7 @@ public class HomeController {
 
             // 저장된 리다이렉트 URI 가져오기
             String redirectUri = (String) session.getAttribute("redirectUri");
-            log.info("세션에서 가져온 redirect_uri : {}", redirectUri);
+//            log.info("세션에서 가져온 redirect_uri : {}", redirectUri);
 
             // 만약 값을 가져오지 않으면 404
             if (redirectUri == null || redirectUri.isEmpty()) {
@@ -77,5 +77,10 @@ public class HomeController {
     @GetMapping("/mypage")
     public String mypage(){
         return "mypage";
+    }
+
+    @GetMapping("/edit-profile")
+    public String editProfile(){
+        return "edit-profile";
     }
 }
