@@ -1,3 +1,18 @@
+// DOMContentLoaded 이벤트를 사용하여 페이지가 로드될 때 실행
+document.addEventListener('DOMContentLoaded', () => {
+    const writerInput = document.getElementById('post-writer');
+
+    // localStorage에서 닉네임을 가져와 작성자 필드에 설정
+    const userNickname = localStorage.getItem('userNickname');
+    if (userNickname) {
+        writerInput.value = userNickname;
+        writerInput.readOnly = true; // 수정 불가능하게 설정
+    } else {
+        console.error('User nickname not found in localStorage.');
+    }
+});
+
+
 document.getElementById('post-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
