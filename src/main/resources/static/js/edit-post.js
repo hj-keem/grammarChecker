@@ -16,31 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 게시글 수정 저장
   async function savePost() {
-    const title = postTitleInput.value;
-    const content = postContentTextarea.value;
-    const writer = postWriterInput.value;
+    // FormData 객체 생성
+    const formData = new FormData();
 
-    const data = {
-      title: title,
-      content: content,
-      writer: writer
+    // Json 데이터를 FormData에 추가
+    const postData = {
+      title: document.getElementById('post-title').value,
+      content: document.getElementById('post-content').value
     };
+
+    // Json 문자열을 'dto' 키로 FormData에 추가
+    formData.append('dto', new Blob([JSON.stringify(postData)], { type: "application/json"}));
+
+    // 이미지 파일이 있는지 확인
+    const imageFile = document.getElementById('post-image').files[0];
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
 
     try {
       const response = await fetch(`/post/${postId}`, {
         method: 'PUT', // 수정 요청을 위한 메서드
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: formData
       });
 
       if (!response.ok) {
         throw new Error('Failed to save post');
       }
 
-      // 게시글 수정 후 목록으로 이동
-      window.location.href = '/notice';
+      const result = await response.json();
+      alert('게시물이 수정되었습니다.');
+      console.log(result);
+
+      // 게시글 수정 후 수정된 게시글로 이동
+      window.location.href = `/post-detail?id=${postId}`;
     } catch (error) {
       console.error('Error saving post:', error);
       alert('게시글을 저장하는 데 실패했습니다.');
