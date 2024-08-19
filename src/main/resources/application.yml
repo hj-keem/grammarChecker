@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/mysql
-    username: root
-    password: rlacldnehd
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://localhost:5432/hangulsarang  # PostgreSQL 연결 URL
+    username: hjkeem
+    password: dnehd
+    driver-class-name: org.postgresql.Driver  # PostgreSQL 드라이버 클래스
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect  # PostgreSQL에 맞는 Hibernate Dialect
     hibernate:
       ddl-auto: create
   web:
