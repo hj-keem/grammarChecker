@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="/css/edit-profile.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <nav>
+      <ul class="categories">
+        <li><a href="/hangulsarang" class="scroll-to" data-target="introduction">홈</a></li>
+        <li><a href="/spellcheck">맞춤법 검사기</a></li>
+        <li><a href="/game">맞춤법 월드컵</a></li>
+        <li><a href="/notice">게시판</a></li>
+      </ul>
+      <a href="#" id="loginButton">로그인</a>
+    </nav>
+  </header>
+  <div class="profile-container">
+    <h1>My Profile</h1>
+    <div class="profile-form">
+      <label for="nickname">Nickname:</label>
+      <input type="text" id="nickname">
+
+      <label for="profileImg">Profile Image:</label>
+      <img id="profileImage" src="" alt="Profile Image">
+      <input type="file" id="profileImgUpload" accept="image/*">
+
+      <button id="saveButton">내용 저장</button>
+    </div>
+  </div>
+</div>
+<script src="/js/edit-profile.js"></script>
+</body>
+</html>
