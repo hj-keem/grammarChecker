@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY build/libs/hangulsarang-0.0.1-SNAPSHOT.jar /app/hangulsarang.jar
+COPY hangulsarang-0.0.1-SNAPSHOT.jar /app/hangulsarang.jar
 
 # Expose the port your application runs on
 EXPOSE 8080
