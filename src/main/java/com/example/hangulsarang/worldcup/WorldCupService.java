@@ -16,14 +16,14 @@ public class WorldCupService {
 
     // 후보 정보
     public List<CandidateDto> candidates = new ArrayList<>(Arrays.asList(
-            new CandidateDto("후보1", "http://localhost:8080/images/image1.png"),
-            new CandidateDto("후보2", "http://localhost:8080/images/image2.png"),
-            new CandidateDto("후보3", "http://localhost:8080/images/image3.png"),
-            new CandidateDto("후보4", "http://localhost:8080/images/image4.png"),
-            new CandidateDto("후보5", "http://localhost:8080/images/image5.png"),
-            new CandidateDto("후보6", "http://localhost:8080/images/image6.png"),
-            new CandidateDto("후보7", "http://localhost:8080/images/image7.png"),
-            new CandidateDto("후보8", "http://localhost:8080/images/image8.png")
+            new CandidateDto("후보1", "https://grammarchecker-0dcy.onrender.com/images/image1.png"),
+            new CandidateDto("후보2", "https://grammarchecker-0dcy.onrender.com/images/image2.png"),
+            new CandidateDto("후보3", "https://grammarchecker-0dcy.onrender.com/images/image3.png"),
+            new CandidateDto("후보4", "https://grammarchecker-0dcy.onrender.com/images/image4.png"),
+            new CandidateDto("후보5", "https://grammarchecker-0dcy.onrender.com/images/image5.png"),
+            new CandidateDto("후보6", "https://grammarchecker-0dcy.onrender.com/images/image6.png"),
+            new CandidateDto("후보7", "https://grammarchecker-0dcy.onrender.com/images/image7.png"),
+            new CandidateDto("후보8", "https://grammarchecker-0dcy.onrender.com/images/image8.png")
     ));
 
     // 후보 정보를 나타내는 로직

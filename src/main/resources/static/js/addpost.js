@@ -36,7 +36,7 @@ document.getElementById('post-form').addEventListener('submit', async (e) => {
     }
 
     try {
-        const response = await fetch('http://localhost:8080/post', {
+        const response = await fetch('/post', {
             method: 'POST',
             body: formData
         });

@@ -135,7 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const data = await response.json();
-            resultDiv.textContent = data.result;
+            console.log('Response Data:', data); // 응답 데이터 확인
+            resultDiv.textContent = data.result || '검사 결과가 없습니다.';
         } catch (error) {
             resultDiv.textContent = `오류 발생: ${error.message}`;
         }

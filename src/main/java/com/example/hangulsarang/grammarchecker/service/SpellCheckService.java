@@ -3,12 +3,14 @@ package com.example.hangulsarang.grammarchecker.service;
 import com.example.hangulsarang.grammarchecker.dto.SpellCheckDto;
 import com.nikialeksey.hunspell.Hunspell;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SpellCheckService {
@@ -22,6 +24,7 @@ public class SpellCheckService {
             File dicFile = new File(dictionaryPath + ".dic");
             File affFile = new File(dictionaryPath + ".aff");
             if (!dicFile.exists() || !affFile.exists()) {
+                log.error("사전 파일이 존재하지 않습니다. dicFile: {}, affFile: {}", dicFile.getPath(), affFile.getPath());
                 throw new Exception("사전 파일을 찾을 수 없습니다.");
             }
 
@@ -38,11 +41,9 @@ public class SpellCheckService {
                     List<String> suggestions = hunspell.suggest(word);
                     dto.setResult("권장 수정어 : [ " + suggestions.get(0)+" ]");
 //                    System.out.println(word + ": 맞춤법 오류! 권장 수정어 : " + dto.getResult());
-                } else if (dto.getResult() == null){
-                    dto.setResult("공백입니다. 단어를 입력해주세요.");
-                }
-                else {
+                } else {
                     dto.setResult("완벽한 문장이에요");
+                    log.info("Spelling check result: {}", dto.getResult());
                 }
             }
             hunspell.close();
