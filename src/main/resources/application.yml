@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://dpg-cr2bgurv2p9s738ddn30-a.singapore-postgres.render.com/hangulsarang # PostgreSQL 연결 URL
     username: hjkeem
-    password: ${DB_PASSWORD}
+    password: ndu3CV8NALUCTx1Yy59FCMGsrWHC29jJ
     driver-class-name: org.postgresql.Driver  # PostgreSQL 드라이버 클래스
   jpa:
     properties:
