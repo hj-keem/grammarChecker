@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://dpg-cr2bgurv2p9s738ddn30-a.singapore-postgres.render.com/hangulsarang?sslmode=require # PostgreSQL 연결 URL
+    url: jdbc:postgresql://dpg-cr2bgurv2p9s738ddn30-a.singapore-postgres.render.com:5432/hangulsarang?sslmode=require # PostgreSQL 연결 URL
+    # postgresql://hjkeem:ndu3CV8NALUCTx1Yy59FCMGsrWHC29jJ@dpg-cr2bgurv2p9s738ddn30-a/hangulsarang
     username: hjkeem
     password: ndu3CV8NALUCTx1Yy59FCMGsrWHC29jJ
     driver-class-name: org.postgresql.Driver  # PostgreSQL 드라이버 클래스
@@ -12,7 +13,7 @@ spring:
       ddl-auto: create
   web:
     resources:
-      add-mapping: true
+      add-mapping: true가
       static-locations: classpath:/static/
   jackson:
     date-format: yyyy-MM-dd'T'HH:mm:ss
